@@ -1,12 +1,12 @@
 describe BankOcr do
 
   it "parses entries into a string of digits" do
-    @bankOcr = BankOcr.new fixture( 'use_case_1_in' )
+    bankOcr = BankOcr.new fixture( 'use_case_1_in' )
 
-    expect( @bankOcr.parsedEntries.join("\n") )
+    expect( bankOcr.parsedEntries.join("\n") )
         .to eq fixture( 'use_case_1_out' ).chomp
 
-    expect( @bankOcr.parsedEntries[10] ).to eq ( "123456789" )
+    expect( bankOcr.parsedEntries[10] ).to eq ( "123456789" )
   end
 
   it "validates account number checksums" do
@@ -21,5 +21,10 @@ describe BankOcr do
     expect( BankOcr.validateChecksum( "888888888" ) ).to be false
     expect( BankOcr.validateChecksum( "999999999" ) ).to be false
     expect( BankOcr.validateChecksum( "123456789" ) ).to be true
+  end
+
+  it "prints results with ERR or ILL when an entry is erroneous or illegible" do
+    bankOcr = BankOcr.new fixture( "use_case_3_in" )
+    expect( bankOcr.results ).to eq fixture( "use_case_3_out" )
   end
 end

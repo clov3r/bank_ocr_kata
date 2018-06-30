@@ -36,7 +36,7 @@ class BankOcr
 
   def self.validateChecksum( accountNumber )
     if accountNumber.length != 9 || accountNumber.match( /\D/ )
-      throw "Invalid account number format"
+      return false
     end
     checksum = 0
     accountNumber.split('').reverse.each_with_index { |digit,i|
@@ -52,6 +52,19 @@ class BankOcr
     rawEntriesChunkedByDigit.map { |entry|
       entry.map { |digitAs3x3Matrix|
         LookupNumberFor[ digitAs3x3Matrix.join ] || "?" }.join }
+  end
+
+  def results
+    parsedEntries.map { |entry|
+      case
+        when self.class.validateChecksum( entry )
+          entry
+        when entry.match( /\?/ )
+          entry + ' ILL'
+        else
+          entry + ' ERR'
+        end }
+      .join("\n") + "\n"
   end
 
   private
