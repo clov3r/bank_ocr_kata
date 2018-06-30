@@ -1,9 +1,10 @@
 # Bank OCR kata
 
-This repository contains fixture files for the [Bank OCR kata](http://codingdojo.org/kata/BankOCR/)
-along with some rspec and minitest setup to get you started to play with the kata.
+**Warning!** This repo contains a [partial] solution for the [Bank OCR kata](http://codingdojo.org/kata/BankOCR/). If you are trying to solve the kata yourself, you may not want to view the source in this repository.
 
-The setup does two things for you, through the files `spec/spec_helper.rb` or `test/helper.rb`:
+This repo was forked from https://github.com/dvrensk/bank_ocr_kata, which provides fixtures for the kata use cases and rspec setup.
+
+The setup does two things for you, through the file `spec/spec_helper.rb`:
 
 1. It loads `lib/bank_ocr.rb` (but no other files). **Warning!**
 This is not Rails, and there is no autoloading. Any other files in which you put code
@@ -12,43 +13,19 @@ need to be explicity `require`d, preferrably from `bank_ocr.rb`
 `fixtures` folder.  
 This kata uses test data that is very sensitive to changes in whitespace, so you might
 save yourself some frustration by not putting the test data in the spec or test files.
-`spec/bank_ocr_spec.rb` and `test/test_bank_ocr.rb` contain examples of calling `fixture`.
-
-Feel free to create more fixtures if you want.
+`spec/bank_ocr_spec.rb` contains examples of calling `fixture`.
 
 ## Getting started
 
 Clone or download this repo to your computer using any standard technique, for instance
 
-    $ git clone https://github.com/dvrensk/bank_ocr_kata.git
-
-It is probably best not to clone the repo and publish your solution.  The kata is an exercise,
-an opportunity to learn and grow, and you will be more free to try stupid things if nobody is
-watching.
+    $ git clone https://github.com/clov3r/bank_ocr_kata.git
 
 Once you have the files on your machine, switch to the resulting directory:
 
     $ cd bank_ocr_kata
 
-If you want to use `minitest`, you should be good to go if you have a recent Ruby version.  Run
-
-    $ ruby test/test_*
-
-and make sure you get an output like
-
-    $ ruby test/test_*
-    Run options: --seed 45175
-
-    # Running:
-
-    ..
-
-    Finished in 0.000973s, 2055.4984 runs/s, 3083.2476 assertions/s.
-
-    2 runs, 3 assertions, 0 failures, 0 errors, 0 skips
-
-
-If you want to use `rspec`, run
+To run `rspec`, first
 
     $ bundle install
 
@@ -56,13 +33,15 @@ to install `rspec` and its dependencies.  Then run `rspec`
 and ensure that it outputs something similar to
 
     $ rspec
-    Randomized with seed 41297
-    ..
+    Randomized with seed 45891
+    ...
 
-    Finished in 0.00607 seconds (files took 0.15088 seconds to load)
-    2 examples, 0 failures
+    Finished in 0.00427 seconds (files took 0.08813 seconds to load)
+    3 examples, 0 failures
 
-    Randomized with seed 41297
+    Randomized with seed 45891
+
+    [Finished in 0.3s]
 
 If you want to use `Docker`, run
 
