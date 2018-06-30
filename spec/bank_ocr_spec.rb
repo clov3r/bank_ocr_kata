@@ -8,4 +8,18 @@ describe BankOcr do
 
     expect( @bankOcr.parsedEntries[10] ).to eq ( "123456789" )
   end
+
+  it "validates account number checksums" do
+    expect( BankOcr.validateChecksum( "000000000" ) ).to be true
+    expect( BankOcr.validateChecksum( "111111111" ) ).to be false
+    expect( BankOcr.validateChecksum( "222222222" ) ).to be false
+    expect( BankOcr.validateChecksum( "333333333" ) ).to be false
+    expect( BankOcr.validateChecksum( "444444444" ) ).to be false
+    expect( BankOcr.validateChecksum( "555555555" ) ).to be false
+    expect( BankOcr.validateChecksum( "666666666" ) ).to be false
+    expect( BankOcr.validateChecksum( "777777777" ) ).to be false
+    expect( BankOcr.validateChecksum( "888888888" ) ).to be false
+    expect( BankOcr.validateChecksum( "999999999" ) ).to be false
+    expect( BankOcr.validateChecksum( "123456789" ) ).to be true
+  end
 end
